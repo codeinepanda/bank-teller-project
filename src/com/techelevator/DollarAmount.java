@@ -2,14 +2,14 @@ package com.techelevator;
 
 public class DollarAmount {
 
-	public long totalAmountInCents;
+	private long totalAmountInCents;
 	
-	public DollarAmount ( long totalAmountInCents ) {
-		totalAmountInCents = this.totalAmountInCents;
+	public  DollarAmount ( long totalAmountInCents ) {
+		this.totalAmountInCents = totalAmountInCents;
 	}
 	
 	public DollarAmount ( long dollars , int cents) {
-		totalAmountInCents = (dollars * 100) + cents;
+		this.totalAmountInCents = (dollars * 100) + cents;
 	}
 	
 	public int getCents () {
@@ -17,20 +17,35 @@ public class DollarAmount {
 	}
 	
 	public long getDollars () {
-		return totalAmountInCents - getCents();
+		return (totalAmountInCents) / 100;
 	}
-	public boolean isEqualTo (long amountToCompare){
-		return amountToCompare == totalAmountInCents;
+	
+	public boolean isEqualTo (DollarAmount amountToCompare){
+		return ( (totalAmountInCents) == amountToCompare.totalAmountInCents );					
 	}
-	public boolean isLessThan (long amountToCompare) {
-		return amountToCompare >= totalAmountInCents;
+	
+	public boolean isLessThan (DollarAmount amountToCompare) {
+		return totalAmountInCents < amountToCompare.totalAmountInCents;
 	}
-	public boolean isGreaterThan ( long amountToCompare) {
-		return amountToCompare <= totalAmountInCents;
+	
+	public boolean isGreaterThan (DollarAmount amountToCompare) {
+		return totalAmountInCents > amountToCompare.totalAmountInCents;
 	}
+	
 	public boolean isNegative () {
 		return totalAmountInCents < 0;
 	}
 	
+	public void plus (DollarAmount amountToAdd) {
+		totalAmountInCents = totalAmountInCents + amountToAdd.totalAmountInCents;
 	}
+	
+	public void minus (DollarAmount amountToSubtract) {
+		totalAmountInCents = totalAmountInCents - amountToSubtract.totalAmountInCents;
+	}
+
+
+	
+	
+}
 	
