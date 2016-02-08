@@ -16,9 +16,21 @@ public class DollarAmount {
 		return (int) ( totalAmountInCents % 100 );
 	}
 	
-	public long getDollar () {
+	public long getDollars () {
 		return totalAmountInCents - getCents();
 	}
+	public boolean isEqualTo (long amountToCompare){
+		return amountToCompare == totalAmountInCents;
+	}
+	public boolean isLessThan (long amountToCompare) {
+		return amountToCompare >= totalAmountInCents;
+	}
+	public boolean isGreaterThan ( long amountToCompare) {
+		return amountToCompare <= totalAmountInCents;
+	}
+	public boolean isNegative () {
+		return totalAmountInCents < 0;
+	}
 	
+	}
 	
-}
