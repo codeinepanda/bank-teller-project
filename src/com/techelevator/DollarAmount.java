@@ -36,9 +36,10 @@ public class DollarAmount {
 		return totalAmountInCents < 0;
 	}
 	
-	public void plus (DollarAmount amountToAdd) {
-		totalAmountInCents = totalAmountInCents + amountToAdd.totalAmountInCents;
-	}
+	//public DollarAmount plus (DollarAmount amountToAdd) {
+		//DollarAmount sum = new DollarAmount(totalAmountInCents);
+		//sum =  sum.getDollars()*100 + sum.getCents() + amountToAdd.getDollars()*100 + amountToAdd.getCents();
+	//}
 	
 	public void minus (DollarAmount amountToSubtract) {
 		totalAmountInCents = totalAmountInCents - amountToSubtract.totalAmountInCents;

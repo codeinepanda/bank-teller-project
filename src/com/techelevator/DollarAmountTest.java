@@ -30,8 +30,8 @@ public class DollarAmountTest {
 	
 	System.out.println();
 	
-		myDollars.plus(otherDollars);
-		System.out.println( (myDollars.getDollars()*100) + myDollars.getCents() );
+		//myDollars.plus(otherDollars);
+		//System.out.println( (myDollars.getDollars()*100) + myDollars.getCents() );
 	
 	
 	
