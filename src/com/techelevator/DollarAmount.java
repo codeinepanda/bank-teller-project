@@ -36,24 +36,14 @@ public class DollarAmount {
 		return totalAmountInCents < 0;
 	}
 
-	public DollarAmount plus(DollarAmount amountToAdd) {
-		//long sumOf = 0;
-		//sumOf = totalAmountInCents + amountToAdd.totalAmountInCents;
-		//DollarAmount sumPlus = new DollarAmount(sumOf);
-		//return sumPlus;
-		// sum.getDollars()*100 + sum.getCents() + amountToAdd.getDollars()*100
-		// + amountToAdd.getCents();
-		//DollarAmount sum = DollarAmount myDollars(DollarAmount otherDollars)
-		//DollarAmount sum = new DollarAmount(this.totalAmountInCents + amountToAdd);
-		
-		DollarAmount sum = new DollarAmount(amountToAdd.totalAmountInCents + this.totalAmountInCents);
-		return sum;
-		//totalAmountInCents = sum;
-		
+	public DollarAmount plus(DollarAmount amountToAdd) {		
+		DollarAmount sum = new DollarAmount(amountToAdd.totalAmountInCents + totalAmountInCents);
+		return sum;	
 	}
 
-	public void minus(DollarAmount amountToSubtract) {
-		totalAmountInCents = totalAmountInCents - amountToSubtract.totalAmountInCents;
+	public DollarAmount minus(DollarAmount amountToSubtract) {
+		DollarAmount diff = new DollarAmount(totalAmountInCents - amountToSubtract.totalAmountInCents);
+		return diff;
 	}
 
 }
