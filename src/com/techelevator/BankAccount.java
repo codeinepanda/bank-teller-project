@@ -1,5 +1,7 @@
 package com.techelevator;
 
+
+
 public class BankAccount {
 	/* *********Variables**********
 	 * 
@@ -20,9 +22,28 @@ public class BankAccount {
 	public String accountNumber;  		// private?
 	public DollarAmount balance;  		// private?
 	
-	public BankAccount () {
+	public BankAccount  (String accountHolderName , String accountNumber , DollarAmount balance) {
+		this.accountHolderName = accountHolderName;
+		this.accountNumber = accountNumber;
+		this.balance = balance;
+	}
+	
+	public DollarAmount getBalance() {
+		return this.balance;
+	}
+	
+	public DollarAmount deposit (DollarAmount amountToDeposit){
+		balance = this.balance.plus(amountToDeposit);
+		return balance;
 		
 	}
 	
+	public void transfer (BankAccount destinationAccount, DollarAmount transferAmount) {
+		this.balance.minus(transferAmount);
+		destinationAccount.balance.plus(transferAmount);
+	}
 	
+	public DollarAmount withdraw(DollarAmount amountToWithdraw){
+		return balance.minus(amountToWithdraw);
+	}
 }
