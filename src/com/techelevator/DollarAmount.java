@@ -4,16 +4,18 @@ public class DollarAmount {
 
 	private long totalAmountInCents;
 
+	//constructor1
 	public DollarAmount(long totalAmountInCents) {
-		this.totalAmountInCents = totalAmountInCents;
+		this.totalAmountInCents = totalAmountInCents;			// need to use "this"?
 	}
-
-	public DollarAmount(long dollars, int cents) {
-		this.totalAmountInCents = (dollars * 100) + cents;
+	
+	//constructor2
+	public DollarAmount(long dollars, int cents) {				// translates dollars and cents into internal representation of the class (totalAmountInCents)
+		this.totalAmountInCents = (dollars * 100) + cents;		// need to use "this"?
 	}
 
 	public int getCents() {
-		return (int) (totalAmountInCents % 100);
+		return (int) (totalAmountInCents % 100);				// how to do this without casting?
 	}
 
 	public long getDollars() {
