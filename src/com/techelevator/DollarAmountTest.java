@@ -1,9 +1,11 @@
 package com.techelevator;
 
+import java.util.Arrays;
+
 public class DollarAmountTest {
 
 	public static void main(String[] args) {
-
+		 
 		DollarAmount myDollars = new DollarAmount(575);
 
 		System.out.println(myDollars.getCents());
@@ -57,6 +59,19 @@ public class DollarAmountTest {
 		// if (!sum.isEqualTo(newDollarAmount(579))) {
 		//	System.out.println("FAIL - plus method failed");
 		//}
+		
+		//COMPARABLE TEST
+		DollarAmount five = new DollarAmount(500);
+		DollarAmount fifty = new DollarAmount(5000);
+		DollarAmount seven = new DollarAmount(700);
+		DollarAmount one = new DollarAmount(100);
+
+		DollarAmount[] theseDollars = new DollarAmount[] { five , fifty, seven, one };
+		Arrays.sort(theseDollars);
+		
+		for(DollarAmount dollarValues : theseDollars ){
+			System.out.print(dollarValues.getDollars()+" ");
+		}
 		
 		
 	}

@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class DollarAmount {
+public class DollarAmount implements Comparable<DollarAmount> {
 
 	private long totalAmountInCents;
 
@@ -46,6 +46,16 @@ public class DollarAmount {
 	public DollarAmount minus(DollarAmount amountToSubtract) {
 		DollarAmount diff = new DollarAmount(totalAmountInCents - amountToSubtract.totalAmountInCents);
 		return diff;
+	}
+
+	public int compareTo(DollarAmount otherDollarAmount) {
+		if (this.totalAmountInCents == otherDollarAmount.totalAmountInCents) {
+			return 0;
+		} else if (this.totalAmountInCents > otherDollarAmount.totalAmountInCents) {
+			return 1;
+		} else {
+			return -1;
+		}
 	}
 
 }
