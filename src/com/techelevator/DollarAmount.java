@@ -59,7 +59,13 @@ public class DollarAmount implements Comparable<DollarAmount> {
 	}
 
 	public String toString() {
-		return ("$" + this.getDollars() + "." + this.getCents());
+		if (this.getCents() < 10) {
+			return ("$" + this.getDollars() + ".0" + this.getCents());
+		} else if (this.getCents() % 10 == 0) {
+			return ("$" + this.getDollars() + "." + this.getCents()+"0");
+		} else {
+			return ("$" + this.getDollars() + "." + this.getCents());
+		}
 	}
 
 	public boolean equals(Object obj) {
