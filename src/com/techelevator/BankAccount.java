@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class BankAccount {
+public abstract class BankAccount implements Comparable<DollarAmount> {
 
 	private String accountHolderName;
 	private String accountNumber;

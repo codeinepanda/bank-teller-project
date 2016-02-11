@@ -13,12 +13,15 @@ public class CheckingAccount extends BankAccount {
 	public void transfer (CheckingAccount destinationAccount, DollarAmount transferAmount) {
 		DollarAmount balance = this.getBalance();
 		
-		if (!(balance.minus(transferAmount).minus(overdraftFee).isLessThan(overdraftStart))) {
-			this.withdraw(transferAmount);
+		if ((balance.minus(transferAmount).minus(overdraftFee).isGreaterThan(overdraftStart))) {
+			
+			super.withdraw(transferAmount);
 			destinationAccount.deposit(transferAmount);
+			//= destinationAccount.getBalance().plus(transferAmount);
 			
 		} else if (balance.minus(transferAmount).minus(overdraftFee).isGreaterThan(overdraftCutoff)) {
-			this.withdraw(transferAmount).minus(overdraftFee);
+			super.withdraw(transferAmount);
+			super.withdraw(overdraftFee);
 			destinationAccount.deposit(transferAmount);	
 		} 
 		
@@ -29,17 +32,20 @@ public class CheckingAccount extends BankAccount {
 		DollarAmount balance = this.getBalance();
 		
 		if (!(balance.minus(amountToWithdraw).minus(overdraftFee).isLessThan(overdraftStart))) {
-			this.withdraw(amountToWithdraw);
+			super.withdraw(amountToWithdraw);
 			
 			
 		} else if (balance.minus(amountToWithdraw).minus(overdraftFee).isGreaterThan(overdraftCutoff)) {
-			this.withdraw(amountToWithdraw).minus(overdraftFee);
+			super.withdraw(amountToWithdraw).minus(overdraftFee);
 			
 		} 
 		return balance;
 		
 		
 	}
+
+	
+	
 	
 	
 	

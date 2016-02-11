@@ -1,6 +1,6 @@
 package com.techelevator;
 
-public class DollarAmount implements Comparable<DollarAmount> {
+public class DollarAmount{
 
 	private long totalAmountInCents;
 
