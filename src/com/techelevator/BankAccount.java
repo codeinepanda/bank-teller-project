@@ -1,13 +1,10 @@
 package com.techelevator;
 
-
-
 public class BankAccount {
 
-	
-	public String accountHolderName;
-	public String accountNumber;
-	public DollarAmount balance;
+	private String accountHolderName;
+	private String accountNumber;
+	private DollarAmount balance;
 	
 	public BankAccount  (String accountHolderName , String accountNumber , DollarAmount balance) {
 		this.accountHolderName = accountHolderName;
@@ -30,9 +27,11 @@ public class BankAccount {
 		destinationAccount.balance = destinationAccount.balance.plus(transferAmount);
 		
 	}
+
 	
 	public DollarAmount withdraw(DollarAmount amountToWithdraw){
 		balance = this.balance.minus(amountToWithdraw);
 		return balance;
 	}
+	
 }

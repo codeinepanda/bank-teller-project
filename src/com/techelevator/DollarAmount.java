@@ -4,27 +4,27 @@ public class DollarAmount implements Comparable<DollarAmount> {
 
 	private long totalAmountInCents;
 
-	//constructor1
+	// constructor1
 	public DollarAmount(long totalAmountInCents) {
-		this.totalAmountInCents = totalAmountInCents;			// need to use "this"?
+		this.totalAmountInCents = totalAmountInCents;
 	}
-	
-	//constructor2
-	public DollarAmount(long dollars, int cents) {				// translates dollars and cents into internal representation of the class (totalAmountInCents)
-		this.totalAmountInCents = (dollars * 100) + cents;		// need to use "this"?
+
+	// constructor2
+	public DollarAmount(long dollars, int cents) { 			// translates dollars and cents into internal representation of the class (totalAmountInCents)
+		this.totalAmountInCents = (dollars * 100) + cents; 	
 	}
 
 	public int getCents() {
-		return (int) (totalAmountInCents % 100);				// how to do this without casting?
+		return (int) (totalAmountInCents % 100); 			// how to do this without casting?
 	}
 
 	public long getDollars() {
 		return (totalAmountInCents) / 100;
 	}
 
-	public boolean isEqualTo(DollarAmount amountToCompare) {
-		return ((totalAmountInCents) == amountToCompare.totalAmountInCents);
-	}
+	// public boolean isEqualTo(DollarAmount amountToCompare) {
+	// return ((totalAmountInCents) == amountToCompare.totalAmountInCents);
+	// }
 
 	public boolean isLessThan(DollarAmount amountToCompare) {
 		return totalAmountInCents < amountToCompare.totalAmountInCents;
@@ -38,9 +38,9 @@ public class DollarAmount implements Comparable<DollarAmount> {
 		return totalAmountInCents < 0;
 	}
 
-	public DollarAmount plus(DollarAmount amountToAdd) {		
+	public DollarAmount plus(DollarAmount amountToAdd) {
 		DollarAmount sum = new DollarAmount(amountToAdd.totalAmountInCents + totalAmountInCents);
-		return sum;	
+		return sum;
 	}
 
 	public DollarAmount minus(DollarAmount amountToSubtract) {
@@ -56,6 +56,23 @@ public class DollarAmount implements Comparable<DollarAmount> {
 		} else {
 			return -1;
 		}
+	}
+
+	public String toString() {
+		return ("$" + this.getDollars() + "." + this.getCents());
+	}
+
+	public boolean equals(Object obj) {
+		if (obj != null && obj instanceof DollarAmount) {
+			DollarAmount amountToCompare = (DollarAmount) obj;
+			return this.totalAmountInCents == amountToCompare.totalAmountInCents;
+		} else {
+			return false;
+		}
+	}
+
+	public int hashCode() {
+		return (int) this.totalAmountInCents;
 	}
 
 }

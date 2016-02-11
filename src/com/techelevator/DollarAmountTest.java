@@ -15,9 +15,9 @@ public class DollarAmountTest {
 
 		DollarAmount otherDollars = new DollarAmount(785);
 		
-		//isEqualToTest
+		/*//isEqualToTest
 		System.out.println(myDollars.isEqualTo(otherDollars));
-
+		*/
 			System.out.println();
 		
 		//isLessThan test
@@ -42,7 +42,7 @@ public class DollarAmountTest {
 		
 			System.out.println();
 
-		//ANOTHER test for PLUS
+		/*//ANOTHER test for PLUS
 		DollarAmount a = new DollarAmount(123);
 		DollarAmount b = new DollarAmount(456);
 		DollarAmount sum = a.plus(b);
@@ -52,7 +52,8 @@ public class DollarAmountTest {
 		} else {
 			System.out.println("PASS - plus method passed");
 		}
-		
+		*/
+			
 			System.out.println();
 		
 		//ANOTHER test for PLUS
@@ -72,6 +73,20 @@ public class DollarAmountTest {
 		for(DollarAmount dollarValues : theseDollars ){
 			System.out.print(dollarValues.getDollars()+" ");
 		}
+		
+		//toString test
+		System.out.println();
+		DollarAmount fivefiftyfive = new DollarAmount(555);
+		System.out.println(fivefiftyfive.toString());
+		
+		//equals test
+		System.out.println();
+		DollarAmount fivefiftyfive2 = new DollarAmount(555);
+		System.out.println(fivefiftyfive.equals(fivefiftyfive2));
+		
+		//hashcode test
+		System.out.println(fivefiftyfive.hashCode());
+		System.out.println(fivefiftyfive2.hashCode());
 		
 		
 	}
