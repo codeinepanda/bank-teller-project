@@ -1,6 +1,9 @@
 package com.techelevator;
 
-public class DollarAmount{
+
+public class DollarAmount implements Comparable <DollarAmount> {
+	
+	public static final DollarAmount ZERO_DOLLARS = new DollarAmount(0);
 
 	private long totalAmountInCents;
 

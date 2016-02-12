@@ -1,53 +1,55 @@
 package com.techelevator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BankCustomer {
 	
-	private String customerName;
-	private String customerLastName;
-	private String customerAddress;
-	private String customerPhone;
+	private static final DollarAmount VIP_BALANCE_THRESHOLD = new DollarAmount(2499999);
 	
-	public BankCustomer ( String customerName , String customerAddress , String customerPhone ) {
-		this.customerName = customerName;
-		this.customerAddress = customerAddress;
-		this.customerPhone = customerPhone;
+	private String name;
+	private String address;
+	private String phoneNumber;
+	private List<BankAccount> accounts;
+	
+	public BankCustomer ( String name , String address , String phoneNumber ) {
+		this.name = name;
+		this.address = address;
+		this.phoneNumber = phoneNumber;
+		this.accounts = new ArrayList<>();
 	}
 	
 	
-	
-	/*
-	 * 
-	 *
-	public String getCustomerName() {
-		return customerName;
-	}
-
-	public void setCustomerName(String customerFirstName) {
-		this.customerName = customerFirstName;
+	public String getName() {
+		return name;
 	}
 
-	public String getCustomerAddress() {
-		return customerAddress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setCustomerAddress(String customerAddress) {
-		this.customerAddress = customerAddress;
+
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
-	public String getCustomerPhone() {
-		return customerPhone;
-	}
-
-	public void setCustomerPhone(String customerPhone) {
-		this.customerPhone = customerPhone;
+	public void addAccount (BankAccount newAccount) {
+		if (newAccount != null) {
+			accounts.add(newAccount);
+		}
 	}
 	
-	*
-	*
-	*/
+	public List<BankAccount> getAccounts() {
+		return new ArrayList<>(accounts);
+	}
 	
-	
-	
-	
+	public boolean isVIP() {
+		DollarAmount sumOfAllAccounts = DollarAmount.ZERO_DOLLARS;
+		for (BankAccount account : accounts) {
+			sumOfAllAccounts = sumOfAllAccounts.plus(account.getBalance());
+		}
+		return sumOfAllAccounts.isGreaterThan(VIP_BALANCE_THRESHOLD);
+		
+	}
 
 }

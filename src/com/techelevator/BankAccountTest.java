@@ -50,6 +50,7 @@ public class BankAccountTest {
 		*/
 		 
 		
+		/*
 	///CheckingAccount transfer
 		CheckingAccount guy30to130 = new CheckingAccount ("This Guy" , "45768", thirty);
 		//System.out.println(guy30to130.getBalance().toString()+" should equal 30");
@@ -91,6 +92,7 @@ public class BankAccountTest {
 		tomSavAcct.withdraw(fourty);
 		System.out.println("tomSavAcct should still have 38 : "+tomSavAcct.getBalance().toString());
 		
+		*/
 
 	}
 

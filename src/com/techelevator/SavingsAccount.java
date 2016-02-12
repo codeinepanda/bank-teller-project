@@ -2,12 +2,12 @@ package com.techelevator;
 
 public class SavingsAccount extends BankAccount {
 	
-	final DollarAmount serviceCharge = new DollarAmount(200);
-	final DollarAmount serviceChargeStart = new DollarAmount(15000);
-	final DollarAmount zero = new DollarAmount(-01);
+	private static final DollarAmount SERVICE_CHARGE = new DollarAmount(200);
+	private static final DollarAmount SERVICE_CHARGE_START = new DollarAmount(15000);
+	private static final DollarAmount ZERO = new DollarAmount(-01);
 
-	public SavingsAccount(String accountHolderName, String accountNumber, DollarAmount balance) {		// need to update to align with BankCustomer?
-		super(accountHolderName, accountNumber, balance);
+	public SavingsAccount(BankCustomer accountHolder, String accountNumber /*, DollarAmount balance*/) {		// need to update to align with BankCustomer?
+		super(accountHolder, accountNumber /*, balance*/);
 		
 	}
 
@@ -16,12 +16,12 @@ public class SavingsAccount extends BankAccount {
 	public void transfer (SavingsAccount destinationAccount, DollarAmount transferAmount) {				// destination BankAccount instead?
 		DollarAmount balance = this.getBalance();
 		
-		if (balance.isGreaterThan(serviceChargeStart) && balance.isGreaterThan(transferAmount)) {
+		if (balance.isGreaterThan(SERVICE_CHARGE_START) && balance.isGreaterThan(transferAmount)) {
 			this.withdraw(transferAmount);
 			destinationAccount.deposit(transferAmount);
 			
-		} else if (balance.minus(transferAmount.plus(serviceCharge)).isGreaterThan(zero)) {
-			this.withdraw(transferAmount.plus(serviceCharge));
+		} else if (balance.minus(transferAmount.plus(SERVICE_CHARGE)).isGreaterThan(ZERO)) {
+			this.withdraw(transferAmount.plus(SERVICE_CHARGE));
 			destinationAccount.deposit(transferAmount);	
 		} 
 		
@@ -31,12 +31,12 @@ public class SavingsAccount extends BankAccount {
 	public DollarAmount withdraw(DollarAmount amountToWithdraw){
 		DollarAmount balance = this.getBalance();
 		
-		if (balance.isGreaterThan(serviceChargeStart) && balance.isGreaterThan(amountToWithdraw)) {
+		if (balance.isGreaterThan(SERVICE_CHARGE_START) && balance.isGreaterThan(amountToWithdraw)) {
 			super.withdraw(amountToWithdraw);
 			return super.getBalance();	
 			
-		} else if (balance.minus(amountToWithdraw.plus(serviceCharge)).isGreaterThan(zero)) {
-			super.withdraw(amountToWithdraw.plus(serviceCharge));
+		} else if (balance.minus(amountToWithdraw.plus(SERVICE_CHARGE)).isGreaterThan(ZERO)) {
+			super.withdraw(amountToWithdraw.plus(SERVICE_CHARGE));
 			return super.getBalance();
 			
 		} else {
@@ -44,12 +44,18 @@ public class SavingsAccount extends BankAccount {
 		}
 				
 	}
+	
+	public String toString() {
+		return "Savings Account "+getAccountNumber();
+	}
 
+	/*
 	@Override
 	public int compareTo(DollarAmount o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	*/
 
 
 
