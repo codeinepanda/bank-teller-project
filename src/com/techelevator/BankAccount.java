@@ -2,12 +2,12 @@ package com.techelevator;
 
 public abstract class BankAccount implements Comparable<DollarAmount> {
 
-	private String accountHolderName;
+	//private String accountHolderName;
 	private String accountNumber;
 	private DollarAmount balance;
 	
-	public BankAccount  (String accountHolderName , String accountNumber , DollarAmount balance) {
-		this.accountHolderName = accountHolderName;
+	public BankAccount  (/*String accountHolderName ,*/ String accountNumber , DollarAmount balance) {
+		//this.accountHolderName = accountHolderName;
 		this.accountNumber = accountNumber;
 		this.balance = balance;
 	}
