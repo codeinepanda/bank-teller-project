@@ -63,6 +63,7 @@ public class BankAccountTest {
 		System.out.println("guy110to10 has "+guy110to10.getBalance().toString());
 		
 		System.out.println();
+		
 	///CheckingAccount withdraw
 		CheckingAccount tomAcct = new CheckingAccount ("Tom", "284", ten);
 		tomAcct.withdraw(thirty);
@@ -71,6 +72,7 @@ public class BankAccountTest {
 		System.out.println("tomAcct should still have -30 : "+tomAcct.getBalance().toString());
 		
 		System.out.println();
+		
 	///SavingsAccount transfer
 		SavingsAccount danAcct = new SavingsAccount("Dan", "2345", twoHundred);
 		SavingsAccount haydenAcct = new SavingsAccount("Hayden", "4567", fourty);
@@ -79,6 +81,7 @@ public class BankAccountTest {
 		System.out.println("haydenAcct should have 100 : "+haydenAcct.getBalance().toString());
 		
 		System.out.println();
+		
 	///CheckingAccount withdraw
 		SavingsAccount tomSavAcct = new SavingsAccount ("Tom", "284", twoHundred);
 		tomSavAcct.withdraw(sixty);

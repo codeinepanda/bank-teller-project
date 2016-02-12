@@ -6,7 +6,7 @@ public class CheckingAccount extends BankAccount {
 	final DollarAmount overdraftCutoff = new DollarAmount(-10001);
 	final DollarAmount zero = new DollarAmount(-01);
 	
-	public CheckingAccount(String accountHolderName, String accountNumber, DollarAmount balance) {
+	public CheckingAccount(String accountHolderName, String accountNumber, DollarAmount balance) {  // need to update to align with BankCustomer?
 		super(accountHolderName, accountNumber, balance);
 	}
 

@@ -6,7 +6,7 @@ public class SavingsAccount extends BankAccount {
 	final DollarAmount serviceChargeStart = new DollarAmount(15000);
 	final DollarAmount zero = new DollarAmount(-01);
 
-	public SavingsAccount(String accountHolderName, String accountNumber, DollarAmount balance) {
+	public SavingsAccount(String accountHolderName, String accountNumber, DollarAmount balance) {		// need to update to align with BankCustomer?
 		super(accountHolderName, accountNumber, balance);
 		
 	}
