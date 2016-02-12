@@ -105,10 +105,8 @@ public class BankTellerCLI {
 	private void getCustomerAccountList(BankCustomer currentCustomer){
 		List<BankAccount> accountList = currentCustomer.getAccounts();
 		int i = 0;
-		System.out.println("getCustomerAccountList runs. Accounts inside: "+accountList.size());
 		for (BankAccount account : accountList) {
-			System.out.print (account.toString());
-			System.out.println(i+") "+account.getAccountNumber().toString());
+			System.out.println(i+") "+account.toString());
 			i = i+1;
 		}
 	}
@@ -146,10 +144,12 @@ public class BankTellerCLI {
 		
 		if (acctChoice.equals("1")) {
 			CheckingAccount newCheckAcct = new CheckingAccount (newCustAcct, acctNum);
+			newCustAcct.addAccount(newCheckAcct);
 			System.out.println("Checking Account "+acctNum+" has been created for "+newCustAcct.getName());
 		}
 		else if (acctChoice.equals("2")) {
 			SavingsAccount newSavAcct = new SavingsAccount (newCustAcct, acctNum);
+			newCustAcct.addAccount(newSavAcct);
 			System.out.println("Savings Account "+acctNum+" has been created for "+newCustAcct.getName());
 		}
 
@@ -166,13 +166,12 @@ public class BankTellerCLI {
 		String number = getUserInput("Enter number");
 		System.out.println();
 		BankCustomer currentCustomer = theBank.getCustomer(Integer.parseInt(number));
-		System.out.println("Current customer is : "+currentCustomer.getName());
+		
 		
 		System.out.println("\nChoose an account:\n");
 		getCustomerAccountList(currentCustomer);
-		
-		
-		//method for list of cust accts
+		System.out.println();
+
 		String acctChoice = getUserInput("Enter number");
 		String depositAmt = getUserInput("Enter deposit amount");
 		
