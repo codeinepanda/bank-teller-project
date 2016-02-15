@@ -22,7 +22,8 @@ public class DollarAmount implements Comparable <DollarAmount> {
 	}
 
 	public long getDollars() {
-		return (totalAmountInCents) / 100;
+		return totalAmountInCents / 100;
+		
 	}
 
 
@@ -74,7 +75,7 @@ public class DollarAmount implements Comparable <DollarAmount> {
 		if (this.getCents() < 10) {
 			return ("$" + this.getDollars() + ".0" + this.getCents());
 		} else if (this.getCents() % 10 == 0) {
-			return ("$" + this.getDollars() + "." + this.getCents()+"0");
+			return ("$" + this.getDollars() + "." + this.getCents());
 		} else {
 			return ("$" + this.getDollars() + "." + this.getCents());
 		}
