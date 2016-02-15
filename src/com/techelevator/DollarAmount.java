@@ -25,6 +25,7 @@ public class DollarAmount implements Comparable <DollarAmount> {
 		return (totalAmountInCents) / 100;
 	}
 
+
 	// public boolean isEqualTo(DollarAmount amountToCompare) {
 	// return ((totalAmountInCents) == amountToCompare.totalAmountInCents);
 	// }
@@ -32,6 +33,8 @@ public class DollarAmount implements Comparable <DollarAmount> {
 	public boolean isLessThan(DollarAmount amountToCompare) {
 		return totalAmountInCents < amountToCompare.totalAmountInCents;
 	}
+	
+	
 
 	public boolean isGreaterThan(DollarAmount amountToCompare) {
 		return totalAmountInCents > amountToCompare.totalAmountInCents;

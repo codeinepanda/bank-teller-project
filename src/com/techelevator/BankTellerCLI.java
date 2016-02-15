@@ -135,7 +135,7 @@ public class BankTellerCLI {
 		System.out.println();
 		BankCustomer newCustAcct = theBank.getCustomer(Integer.parseInt(number));
 		
-		System.out.println("\nChoose an acount type:\n");
+		System.out.println("\nChoose an account type:\n");
 		System.out.println("1) Checking");
 		System.out.println("2) Savings");
 		
