@@ -11,7 +11,7 @@ public abstract class BankAccount {
 		//this.accountHolderName = accountHolderName;
 		this.accountHolder = accountHolder;
 		this.accountNumber = accountNumber;
-		//this.balance = balance;
+		this.balance = DollarAmount.ZERO_DOLLARS;
 	}
 	
 	public DollarAmount getBalance() {

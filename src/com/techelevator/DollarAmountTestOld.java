@@ -2,7 +2,7 @@ package com.techelevator;
 
 import java.util.Arrays;
 
-public class DollarAmountTest {
+public class DollarAmountTestOld {
 
 	public static void main(String[] args) {
 		 
