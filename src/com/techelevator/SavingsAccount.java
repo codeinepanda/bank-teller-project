@@ -28,16 +28,16 @@ public class SavingsAccount extends BankAccount {
 	}
 	
 	
-	public DollarAmount withdraw(DollarAmount amountToWithdraw){
+	public DollarAmount withdrawal(DollarAmount amountToWithdraw){
 		DollarAmount balance = this.getBalance();
 		
 		if (balance.isGreaterThan(SERVICE_CHARGE_START) && balance.isGreaterThan(amountToWithdraw)) {
-			super.withdraw(amountToWithdraw);
-			return super.getBalance();	
+			return super.withdraw(amountToWithdraw);
+			//return super.getBalance();	
 			
 		} else if (balance.minus(amountToWithdraw.plus(SERVICE_CHARGE)).isGreaterThan(ZERO)) {
-			super.withdraw(amountToWithdraw.plus(SERVICE_CHARGE));
-			return super.getBalance();
+			return super.withdraw(amountToWithdraw.plus(SERVICE_CHARGE));
+			//return super.getBalance();
 			
 		} else {
 			return super.getBalance();
