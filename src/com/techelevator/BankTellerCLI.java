@@ -111,6 +111,8 @@ public class BankTellerCLI {
 		}
 	}
 	
+	
+	
 	/*** 1 ***/
 	private void addCustomer() {
 		printBanner("ADD CUSTOMER");
@@ -166,14 +168,19 @@ public class BankTellerCLI {
 		String number = getUserInput("Enter number");
 		System.out.println();
 		BankCustomer currentCustomer = theBank.getCustomer(Integer.parseInt(number));
-		
+		BankAccount currentAccount;
 		
 		System.out.println("\nChoose an account:\n");
 		getCustomerAccountList(currentCustomer);
 		System.out.println();
-
+		
 		String acctChoice = getUserInput("Enter number");
 		String depositAmt = getUserInput("Enter deposit amount");
+		
+		DollarAmount depositAmount = new DollarAmount(Integer.valueOf(depositAmt)*100);
+		currentAccount = currentCustomer.getAccounts().get(Integer.valueOf(acctChoice));
+		currentAccount.deposit(depositAmount);
+		System.out.println(currentAccount.getBalance());
 		
 	}
 	
