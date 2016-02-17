@@ -175,14 +175,24 @@ public class BankTellerCLI {
 		System.out.println();
 		
 		String acctChoice = getUserInput("Enter number");
-		String depositAmt = getUserInput("Enter deposit amount");
+		DollarAmount depositAmount;
+		//exception handling
+		do {
+			String depositAmt = getUserInput("Enter deposit amount");
+			try { 
+				depositAmount = new DollarAmount( (int) ((Double.valueOf(depositAmt))*100));
+				//depositAmount = new DollarAmount((Integer.valueOf(depositAmt))*100);
+				break;
+			} catch (NumberFormatException nfe) {
+				System.out.println("Please enter a valid dollar amount...");
+			}
+		} while(true);
 		
-		DollarAmount depositAmount = new DollarAmount(Integer.valueOf(depositAmt)*100);
 		currentAccount = currentCustomer.getAccounts().get(Integer.valueOf(acctChoice));
 		currentAccount.deposit(depositAmount);
-		System.out.println(depositAmount.toString()+" was deposited in "+currentAccount.toString());
-		System.out.println("New Balance is "+currentAccount.getBalance());
-
+		
+		System.out.println("**** "+depositAmount.toString()+" was deposited in "+currentAccount.toString()+" ****");
+		System.out.println("**** New Balance is "+currentAccount.getBalance()+" ****");
 	}
 	
 	/***  4 ***/
@@ -203,14 +213,29 @@ public class BankTellerCLI {
 		System.out.println();
 		
 		String acctChoice = getUserInput("Enter number");
-		String withdrawAmt = getUserInput("Enter withdrawal amount");
 		
-		DollarAmount withdrawAmount = new DollarAmount(Integer.valueOf(withdrawAmt)*100);
+		DollarAmount withdrawAmount;
+		
+		//exception handling
+		do {
+			String withdrawAmt = getUserInput("Enter withdrawal amount");
+			try { 
+				withdrawAmount = new DollarAmount( (int) ((Double.valueOf(withdrawAmt))*100));
+				//withdrawAmount = new DollarAmount(Integer.valueOf(withdrawAmt)*100);
+				break;
+			} catch (NumberFormatException nfe) {
+				System.out.println("Please enter a valid dollar amount...");
+			}
+		} while(true);
+		
+		
+		
+		//DollarAmount withdrawAmount = new DollarAmount(Integer.valueOf(withdrawAmt)*100);
 		currentAccount = currentCustomer.getAccounts().get(Integer.valueOf(acctChoice));
 		currentAccount.withdraw(withdrawAmount);
-		System.out.println(withdrawAmount.toString()+" withdrawn from "+currentAccount.toString());
-		System.out.println("New Balance is "+currentAccount.getBalance());
-
+		
+		System.out.println("**** "+withdrawAmount.toString()+" withdrawn from "+currentAccount.toString()+" ****");
+		System.out.println("**** New Balance is "+currentAccount.getBalance()+" ****");
 	}
 	
 	/***  5 ***/
@@ -226,9 +251,6 @@ public class BankTellerCLI {
 		BankCustomer sourceCustomer = theBank.getCustomer(Integer.parseInt(number));
 		BankAccount sourceAccount;
 		
-		
-		
-		
 		System.out.println("\nChoose a source account:\n");
 		getCustomerAccountList(sourceCustomer);
 		System.out.println();
@@ -243,18 +265,33 @@ public class BankTellerCLI {
 		System.out.println();
 		String destinationChoice = getUserInput("enter number");
 
-		String transferAmt = getUserInput("Enter transfer amount");
+		//String transferAmt = getUserInput("Enter transfer amount");
+		
+		DollarAmount transferAmount;
+		
+			//exception handling
+			do {
+				String transferAmt = getUserInput("Enter transfer amount");
+				try { 
+					transferAmount = new DollarAmount( (int) ((Double.valueOf(transferAmt))*100));
+					//transferAmount = new DollarAmount(Integer.valueOf(transferAmt)*100);
+					break;
+				} catch (NumberFormatException nfe) {
+					System.out.println("Please enter a valid dollar amount...");
+				}
+			} while(true);
+		
 		
 		destinationAccount = sourceCustomer.getAccounts().get(Integer.valueOf(destinationChoice));
 
-		DollarAmount transferAmount = new DollarAmount(Integer.valueOf(transferAmt)*100);
+		//DollarAmount transferAmount = new DollarAmount(Integer.valueOf(transferAmt)*100);
 		sourceAccount = sourceCustomer.getAccounts().get(Integer.valueOf(sourceChoice));
 		sourceAccount.transfer(destinationAccount, transferAmount);
-		System.out.println(transferAmount.toString()+" transferred from "+sourceAccount.toString());
-		System.out.println("New Balance is "+sourceAccount.getBalance());
-		System.out.println(transferAmount.toString()+" deposited into "+destinationAccount.toString());
-		System.out.println("New Balance is "+destinationAccount.getBalance());
-
+		
+		System.out.println("**** "+transferAmount.toString()+" transferred from "+sourceAccount.toString()+" ****");
+		System.out.println("**** New Balance is "+sourceAccount.getBalance()+" ****");
+		System.out.println("**** "+transferAmount.toString()+" deposited into "+destinationAccount.toString()+" ****");
+		System.out.println("**** New Balance is "+destinationAccount.getBalance()+" ****");
 	}
 	
 	/*** 6 ***/

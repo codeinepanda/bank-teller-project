@@ -61,14 +61,14 @@ public class CheckingAccountTest {
 		DollarAmount amountWithdraw = new DollarAmount (1000);
 		DollarAmount amountEnding = new DollarAmount (-2000);
 		
-		theCheckAccount.withdrawal(amountWithdraw);
+		theCheckAccount.withdraw(amountWithdraw);
 		
 		Assert.assertEquals(amountEnding, theCheckAccount.getBalance());
 	}
 	@Test
 	public void withdrawal_from_account_should_fail() {
 		DollarAmount amountWithdraw = new DollarAmount (9001);
-		theCheckAccount.withdrawal(amountWithdraw);
+		theCheckAccount.withdraw(amountWithdraw);
 
 		Assert.assertEquals(DollarAmount.ZERO_DOLLARS, theCheckAccount.getBalance());
 	}
@@ -76,7 +76,7 @@ public class CheckingAccountTest {
 	public void withdrawal_from_account_should_withdraw() {
 		DollarAmount amountWithdraw = new DollarAmount (100);
 		theCheckAccount.deposit(amountWithdraw);
-		theCheckAccount.withdrawal(amountWithdraw);
+		theCheckAccount.withdraw(amountWithdraw);
 
 		Assert.assertEquals(DollarAmount.ZERO_DOLLARS, theCheckAccount.getBalance());
 	}

@@ -21,7 +21,7 @@ public class SavingsAccount extends BankAccount {
 			destinationAccount.deposit(transferAmount);
 			
 		} else if (balance.minus(transferAmount.plus(SERVICE_CHARGE)).isGreaterThan(ZERO)) {
-			this.withdraw(transferAmount.plus(SERVICE_CHARGE));
+			this.withdraw(transferAmount/*.plus(SERVICE_CHARGE)*/);
 			destinationAccount.deposit(transferAmount);	
 		} 
 		

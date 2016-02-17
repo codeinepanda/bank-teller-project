@@ -19,7 +19,7 @@ public class CheckingAccount extends BankAccount {
 			destinationAccount.deposit(transferAmount);
 			
 		} else if (balance.minus(transferAmount.plus(OVERDRAFT_FEE)).isGreaterThanOrEqualTo(OVERDRAFT_LIMIT)) {
-			this.withdraw(transferAmount.plus(OVERDRAFT_FEE));
+			this.withdraw(transferAmount/*.plus(OVERDRAFT_FEE)*/);
 			destinationAccount.deposit(transferAmount);	
 		} 
 		

@@ -59,7 +59,7 @@ public class SavingsAccountTest {
 	public void withdrawal_should_fail_if_balance_will_go_below_0(){
 		DollarAmount amountWithdraw = new DollarAmount (1000);
 		DollarAmount currentBalance = theAccount.getBalance();
-		theAccount.withdrawal(amountWithdraw);
+		theAccount.withdraw(amountWithdraw);
 		
 		Assert.assertEquals(DollarAmount.ZERO_DOLLARS, currentBalance);
 	}
@@ -71,7 +71,7 @@ public class SavingsAccountTest {
 		DollarAmount amountEnding = new DollarAmount (24000);
 		
 		theAccount.deposit(amountDeposited);
-		theAccount.withdrawal(amountWithdraw);
+		theAccount.withdraw(amountWithdraw);
 		DollarAmount currentBalance = theAccount.getBalance();
 		
 		Assert.assertEquals(amountEnding, currentBalance);
@@ -84,7 +84,7 @@ public class SavingsAccountTest {
 		DollarAmount amountEnding = new DollarAmount (8800);
 		
 		theAccount.deposit(amountDeposited);
-		theAccount.withdrawal(amountWithdraw);
+		theAccount.withdraw(amountWithdraw);
 		DollarAmount currentBalance = theAccount.getBalance();
 		
 		Assert.assertEquals(amountEnding, currentBalance);
@@ -97,7 +97,7 @@ public class SavingsAccountTest {
 		DollarAmount amountEnding = new DollarAmount (15100);
 		
 		theAccount.deposit(amountDeposited);
-		theAccount.withdrawal(amountWithdraw);
+		theAccount.withdraw(amountWithdraw);
 		
 		
 		Assert.assertEquals(amountEnding, theAccount.getBalance());
