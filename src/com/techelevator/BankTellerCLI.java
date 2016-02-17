@@ -41,11 +41,11 @@ public class BankTellerCLI {
 			}	
 			
 			else if ( choice.equals("4") ) {
-				//withdraw();
+				withdrawal();
 			}
 			
 			else if ( choice.equals("5") ) {
-				//transfer();
+				transfer();
 			}
 
 			else if ( choice.equals("6") ) {
@@ -145,12 +145,12 @@ public class BankTellerCLI {
 		String acctNum	= getUserInput("Enter account number");
 		
 		if (acctChoice.equals("1")) {
-			CheckingAccount newCheckAcct = new CheckingAccount (newCustAcct, acctNum);
+			BankAccount newCheckAcct = new CheckingAccount (newCustAcct, acctNum);
 			newCustAcct.addAccount(newCheckAcct);
 			System.out.println("Checking Account "+acctNum+" has been created for "+newCustAcct.getName());
 		}
 		else if (acctChoice.equals("2")) {
-			SavingsAccount newSavAcct = new SavingsAccount (newCustAcct, acctNum);
+			BankAccount newSavAcct = new SavingsAccount (newCustAcct, acctNum);
 			newCustAcct.addAccount(newSavAcct);
 			System.out.println("Savings Account "+acctNum+" has been created for "+newCustAcct.getName());
 		}
@@ -180,10 +180,82 @@ public class BankTellerCLI {
 		DollarAmount depositAmount = new DollarAmount(Integer.valueOf(depositAmt)*100);
 		currentAccount = currentCustomer.getAccounts().get(Integer.valueOf(acctChoice));
 		currentAccount.deposit(depositAmount);
-		System.out.println(currentAccount.getBalance());
-		
+		System.out.println(depositAmount.toString()+" was deposited in "+currentAccount.toString());
+		System.out.println("New Balance is "+currentAccount.getBalance());
+
 	}
 	
+	/***  4 ***/
+	private void withdrawal() {
+		printBanner("WITHDRAW");
+		System.out.println("\nChoose a customer:\n");
+		
+		getCustomerList();
+		
+		System.out.println();
+		String number = getUserInput("Enter number");
+		System.out.println();
+		BankCustomer currentCustomer = theBank.getCustomer(Integer.parseInt(number));
+		BankAccount currentAccount;
+		
+		System.out.println("\nChoose an account:\n");
+		getCustomerAccountList(currentCustomer);
+		System.out.println();
+		
+		String acctChoice = getUserInput("Enter number");
+		String withdrawAmt = getUserInput("Enter withdrawal amount");
+		
+		DollarAmount withdrawAmount = new DollarAmount(Integer.valueOf(withdrawAmt)*100);
+		currentAccount = currentCustomer.getAccounts().get(Integer.valueOf(acctChoice));
+		currentAccount.withdraw(withdrawAmount);
+		System.out.println(withdrawAmount.toString()+" withdrawn from "+currentAccount.toString());
+		System.out.println("New Balance is "+currentAccount.getBalance());
+
+	}
+	
+	/***  5 ***/
+	private void transfer() {
+		printBanner("TRANSFER");
+		System.out.println("\nChoose a customer:\n");
+		
+		getCustomerList();
+		
+		System.out.println();
+		String number = getUserInput("Enter number");
+		System.out.println();
+		BankCustomer sourceCustomer = theBank.getCustomer(Integer.parseInt(number));
+		BankAccount sourceAccount;
+		
+		
+		
+		
+		System.out.println("\nChoose a source account:\n");
+		getCustomerAccountList(sourceCustomer);
+		System.out.println();
+		
+
+		String sourceChoice = getUserInput("Enter number");
+		// we have chosen source
+		System.out.println("\nChoose a destination account:\n");
+		
+		BankAccount destinationAccount;
+		getCustomerAccountList(sourceCustomer);
+		System.out.println();
+		String destinationChoice = getUserInput("enter number");
+
+		String transferAmt = getUserInput("Enter transfer amount");
+		
+		destinationAccount = sourceCustomer.getAccounts().get(Integer.valueOf(destinationChoice));
+
+		DollarAmount transferAmount = new DollarAmount(Integer.valueOf(transferAmt)*100);
+		sourceAccount = sourceCustomer.getAccounts().get(Integer.valueOf(sourceChoice));
+		sourceAccount.transfer(destinationAccount, transferAmount);
+		System.out.println(transferAmount.toString()+" transferred from "+sourceAccount.toString());
+		System.out.println("New Balance is "+sourceAccount.getBalance());
+		System.out.println(transferAmount.toString()+" deposited into "+destinationAccount.toString());
+		System.out.println("New Balance is "+destinationAccount.getBalance());
+
+	}
 	
 	/*** 6 ***/
 	private void exitMainMenu() {

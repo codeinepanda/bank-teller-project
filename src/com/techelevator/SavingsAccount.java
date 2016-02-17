@@ -16,7 +16,7 @@ public class SavingsAccount extends BankAccount {
 	public void transfer (SavingsAccount destinationAccount, DollarAmount transferAmount) {				// destination BankAccount instead?
 		DollarAmount balance = this.getBalance();
 		
-		if (balance.isGreaterThan(SERVICE_CHARGE_START) && balance.isGreaterThan(transferAmount)) {
+		if (balance.isGreaterThanOrEqualTo(SERVICE_CHARGE_START) && balance.isGreaterThanOrEqualTo(transferAmount)) {
 			this.withdraw(transferAmount);
 			destinationAccount.deposit(transferAmount);
 			
@@ -28,7 +28,7 @@ public class SavingsAccount extends BankAccount {
 	}
 	
 	
-	public DollarAmount withdrawal(DollarAmount amountToWithdraw){
+	public DollarAmount withdraw(DollarAmount amountToWithdraw){
 		DollarAmount balance = this.getBalance();
 		
 		if (balance.isGreaterThan(SERVICE_CHARGE_START) && balance.isGreaterThan(amountToWithdraw)) {

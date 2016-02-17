@@ -26,7 +26,7 @@ public class CheckingAccount extends BankAccount {
 	}
 	
 	
-	public DollarAmount withdrawal (DollarAmount amountToWithdraw) {  
+	public DollarAmount withdraw (DollarAmount amountToWithdraw) {  
 		DollarAmount balance = this.getBalance();
 		
 		if (balance.minus(amountToWithdraw).isGreaterThanOrEqualTo(ZERO)) {
