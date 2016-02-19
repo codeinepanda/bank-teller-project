@@ -1,5 +1,8 @@
 package com.techelevator;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import com.techelevator.util.Terminal;
@@ -47,8 +50,12 @@ public class BankTellerCLI {
 			else if ( choice.equals("5") ) {
 				transfer();
 			}
-
+			
 			else if ( choice.equals("6") ) {
+				export();
+			}
+
+			else if ( choice.equals("7") ) {
 				/*
 				System.out.println("\n**** Exiting... Have a nice day ****");
 				System.exit(0);						// to exit a program from any point, takes an integer as a parameter... 0 = normal exit
@@ -70,7 +77,8 @@ public class BankTellerCLI {
 		System.out.println("3) Deposit");
 		System.out.println("4) Withdraw");
 		System.out.println("5) Transfer");
-		System.out.println("6) Exit");
+		System.out.println("6) Export");
+		System.out.println("7) Exit");
 		System.out.println();
 
 		return getUserInput("Enter number");
@@ -263,7 +271,7 @@ public class BankTellerCLI {
 		BankAccount destinationAccount;
 		getCustomerAccountList(sourceCustomer);
 		System.out.println();
-		String destinationChoice = getUserInput("enter number");
+		String destinationChoice = getUserInput("Enter number");
 
 		//String transferAmt = getUserInput("Enter transfer amount");
 		
@@ -295,6 +303,51 @@ public class BankTellerCLI {
 	}
 	
 	/*** 6 ***/
+	private void export() {
+		printBanner("EXPORT DATA");
+		
+		System.out.println();
+		String targetPath = getUserInput("Enter path to export file");  // targetFile is the file we want to export the data to
+		File bankDataExport = new File(targetPath);
+		System.out.println();
+		
+		
+		int numberOfCustomers = 0;
+		int numberOfAccounts = 0;
+		
+		
+		String bankData = "";
+		
+		for ( int i = 0 ; i < theBank.getCustomers().size() ; i++ ) {
+			BankCustomer currentCustomer = theBank.getCustomer(i);
+			numberOfCustomers++;
+			bankData = bankData+"C|"+currentCustomer.getName()+"|"+currentCustomer.getAddress()+"|"+currentCustomer.getPhoneNumber()+'\n';
+			for (int x = 0 ; x < currentCustomer.getAccounts().size() ; x++ ) {
+				String accountLetter = "";
+				if ( theBank.getCustomer(i).getAccounts().get(x).toString().startsWith("S")  ) {
+					accountLetter = "S";
+				} else if ( theBank.getCustomer(i).getAccounts().get(x).toString().startsWith("C")  ) {
+					accountLetter = "C";
+				}
+				numberOfAccounts++;
+				long balanceInCents =( (theBank.getCustomer(i).getAccounts().get(x).getBalance().getDollars()) );
+				bankData = bankData + "A|"+accountLetter+"|"+theBank.getCustomer(i).getAccounts().get(x).getAccountNumber()+"|"+balanceInCents+'\n';
+			}	
+		}
+		
+		try(PrintWriter writer = new PrintWriter(bankDataExport)) {
+			writer.println(bankData);
+			System.out.println("**** "+ numberOfCustomers +" Customers and "+ numberOfAccounts +" Accounts were exported to "+bankDataExport.getAbsolutePath()+" ****");
+		} catch (FileNotFoundException e) {
+			System.out.println( "You did not enter a valid file path.");
+		}catch (Exception e1) {
+			System.out.println( "You did something wrong (it was you, not us). Try again.");
+		}
+		
+		
+	}
+	
+	/*** 7 ***/
 	private void exitMainMenu() {
 		System.out.println("\n**** Exiting... Have a nice day ****");
 		System.exit(0);						// to exit a program from any point, takes an integer as a parameter... 0 = normal exit
