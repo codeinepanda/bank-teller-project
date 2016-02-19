@@ -330,7 +330,7 @@ public class BankTellerCLI {
 					accountLetter = "C";
 				}
 				numberOfAccounts++;
-				long balanceInCents =( (theBank.getCustomer(i).getAccounts().get(x).getBalance().getDollars()) );
+				long balanceInCents =(( (theBank.getCustomer(i).getAccounts().get(x).getBalance().getDollars()) * 100 )+ (theBank.getCustomer(i).getAccounts().get(x).getBalance().getCents()) );
 				bankData = bankData + "A|"+accountLetter+"|"+theBank.getCustomer(i).getAccounts().get(x).getAccountNumber()+"|"+balanceInCents+'\n';
 			}	
 		}
